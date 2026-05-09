@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Portfolio IT Support</title>
+
+  <!-- FAVICON FIXED (VERSI PALING AMAN) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./fotoku.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="./fotoku.png?v=1">
+  <link rel="shortcut icon" href="./fotoku.png?v=1">
+
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -39,8 +45,10 @@
 
 </div>
 
-<!-- MODAL DETAIL -->
-<div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-6 z-40">
+<!-- MODAL -->
+<div id="modal"
+  class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-6 z-40"
+  onclick="handleOutsideClick(event)">
 
   <div class="bg-white w-full max-w-3xl rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto">
 
@@ -72,7 +80,7 @@
   </div>
 </div>
 
-<!-- IMAGE LIGHTBOX (CENTER FULL SCREEN) -->
+<!-- LIGHTBOX -->
 <div id="imageLightbox"
   class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
   onclick="closeImage()">
@@ -112,7 +120,7 @@ const projects = [
   }
 ];
 
-// RENDER PROJECT
+// render
 function render(data) {
   const container = document.getElementById("projectList");
   container.innerHTML = "";
@@ -138,19 +146,17 @@ function render(data) {
   });
 }
 
-// SEARCH
+// search
 document.getElementById("search").addEventListener("input", function(e) {
   const value = e.target.value.toLowerCase();
-
   const filtered = projects.filter(p =>
     p.title.toLowerCase().includes(value) ||
     p.description.toLowerCase().includes(value)
   );
-
   render(filtered);
 });
 
-// OPEN MODAL
+// modal open
 function openModal(index) {
   const p = projects[index];
 
@@ -172,12 +178,19 @@ function openModal(index) {
   document.getElementById("modal").classList.remove("hidden");
 }
 
-// CLOSE MODAL
+// close modal
 function closeModal() {
   document.getElementById("modal").classList.add("hidden");
 }
 
-// LIGHTBOX IMAGE (CENTER FULL SCREEN)
+// click outside to close
+function handleOutsideClick(event) {
+  if (event.target.id === "modal") {
+    closeModal();
+  }
+}
+
+// lightbox
 function openImage(src) {
   document.getElementById("imageLightbox").classList.remove("hidden");
   document.getElementById("lightboxImg").src = src;
@@ -187,7 +200,7 @@ function closeImage() {
   document.getElementById("imageLightbox").classList.add("hidden");
 }
 
-// INIT
+// init
 render(projects);
 
 </script>
