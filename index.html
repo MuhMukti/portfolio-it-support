@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Muhammad Mukti Munasir Putra</title>
+    <!-- Tailwind CSS untuk Styling -->
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <!-- React & Babel untuk menjalankan JSX di Browser -->
+    <script src="[https://unpkg.com/react@18/umd/react.development.js](https://unpkg.com/react@18/umd/react.development.js)"></script>
+    <script src="[https://unpkg.com/react-dom@18/umd/react-dom.development.js](https://unpkg.com/react-dom@18/umd/react-dom.development.js)"></script>
+    <script src="[https://unpkg.com/@babel/standalone/babel.min.js](https://unpkg.com/@babel/standalone/babel.min.js)"></script>
+    <style>
+        body { background-color: #f3f4f6; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function PortfolioWebsite() {
+            const projects = [
+                {
+                    title: 'Dukungan IT & Troubleshooting Sistem ERP',
+                    image: 'erp-support.png', 
+                    description: 'Menyediakan layanan remote IT support dan troubleshooting sistem ERP untuk berbagai klien bisnis guna memastikan operasional berjalan stabil dan minim downtime.',
+                    responsibilities: [
+                        'Troubleshooting sistem ERP dan database',
+                        'Remote support (AnyDesk, TeamViewer, UltraViewer, RDC)',
+                        'Konfigurasi printer dan perangkat jaringan',
+                        'Perbaikan dan optimasi query SQL',
+                        'Menjaga response time dan resolution time secara optimal'
+                    ],
+                    tools: ['SQL Database', 'AnyDesk', 'TeamViewer', 'UltraViewer', 'RDC'],
+                    result: 'Menangani lebih dari 5.665 kasus support dan mendukung 388+ klien dengan penyelesaian masalah yang cepat dan efektif.'
+                },
+                {
+                    title: 'POS System & Network Setup',
+                    image: 'pos-system.png',
+                    description: 'Melakukan instalasi, konfigurasi, dan dukungan teknis untuk sistem POS serta infrastruktur jaringan pada lingkungan restoran dan retail.',
+                    responsibilities: [
+                        'Setup NCR Aloha POS',
+                        'Konfigurasi router, access point, dan WiFi',
+                        'Troubleshooting jaringan dan konektivitas sistem',
+                        'Support onsite dan remote kepada klien',
+                        'Konfigurasi printer dan maintenance perangkat operasional'
+                    ],
+                    tools: ['NCR Aloha POS', 'Windows', 'Ubuntu Linux', 'AnyDesk', 'TeamViewer'],
+                    result: 'Membantu menjaga stabilitas operasional sistem POS dan jaringan bisnis klien dengan downtime minimal.'
+                }
+            ];
+
+            return (
+                <div className="min-h-screen p-6 font-sans">
+                    <div className="max-w-5xl mx-auto">
+                        
+                        <div className="bg-white rounded-3xl shadow-lg p-8 mb-8">
+                            <h1 className="text-4xl font-bold mb-2 text-gray-900">Muhammad Mukti Munasir Putra</h1>
+                            <p className="text-blue-600 font-semibold mb-4 text-lg">IT Support Specialist</p>
+                            <p className="text-gray-700 leading-relaxed">
+                                Pengalaman lebih dari 7 tahun dalam ERP support, POS system, troubleshooting jaringan, SQL database, dan remote support.
+                            </p>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-center">
+                                <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100">
+                                    <h3 className="font-bold text-2xl text-blue-700">5.665+</h3>
+                                    <p className="text-gray-600 text-sm">Support Cases</p>
+                                </div>
+                                <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100">
+                                    <h3 className="font-bold text-2xl text-blue-700">388+</h3>
+                                    <p className="text-gray-600 text-sm">Clients Supported</p>
+                                </div>
+                                <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100">
+                                    <h3 className="font-bold text-2xl text-blue-700">7+ Tahun</h3>
+                                    <p className="text-gray-600 text-sm">Pengalaman</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 className="text-3xl font-bold mb-6 text-gray-800">Portfolio Projects</h2>
+
+                        
+                        <div className="space-y-12">
+                            {projects.map((project, index) => (
+                                <div key={index} className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+                                    <img src={project.image} alt={project.title} className="w-full h-80 object-cover" />
+                                    <div className="p-8">
+                                        <h3 className="text-2xl font-bold mb-4 text-gray-900">{project.title}</h3>
+                                        <p className="text-gray-700 mb-6">{project.description}</p>
+                                        
+                                        <div className="grid md:grid-cols-2 gap-8">
+                                            <div>
+                                                <h4 className="font-bold text-lg mb-3 text-blue-800">Tanggung Jawab</h4>
+                                                <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm">
+                                                    {project.responsibilities.map((item, i) => <li key={i}>{item}</li>)}
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h4 className="font-bold text-lg mb-3 text-blue-800">Tools</h4>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {project.tools.map((tool, i) => (
+                                                        <span key={i} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                                                            {tool}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-8 bg-blue-700 rounded-2xl p-6 text-white shadow-inner">
+                                            <h4 className="font-bold text-lg mb-1">📌 Hasil Akhir</h4>
+                                            <p className="opacity-90">{project.result}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        
+                        <footer className="mt-12 text-center text-gray-500 text-sm">
+                            © 2026 Muhammad Mukti Munasir Putra | IT Support Portfolio
+                        </footer>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PortfolioWebsite/>);
+    </script>
+</body>
+</html>
