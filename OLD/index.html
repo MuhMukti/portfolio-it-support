@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio IT Support</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+
+<div class="max-w-5xl mx-auto" id="app"></div>
+
+<script>
+const projects = [
+  {
+    title: "Dukungan IT & Troubleshooting Sistem ERP",
+    image: "erp-support.png",
+    description:
+      "Menyediakan layanan remote IT support dan troubleshooting sistem ERP untuk berbagai klien bisnis guna memastikan operasional berjalan stabil dan minim downtime.",
+    responsibilities: [
+      "Troubleshooting sistem ERP dan database",
+      "Remote support (AnyDesk, TeamViewer, UltraViewer, RDC)",
+      "Konfigurasi printer dan perangkat jaringan",
+      "Perbaikan dan optimasi query SQL",
+      "Menjaga response time dan resolution time optimal"
+    ],
+    tools: ["SQL Database", "AnyDesk", "TeamViewer", "UltraViewer", "RDC"],
+    result:
+      "Menangani lebih dari 5.665 kasus support dan mendukung 388+ klien dengan penyelesaian cepat dan efektif."
+  },
+  {
+    title: "POS System & Network Setup",
+    image: "pos-system.png",
+    description:
+      "Instalasi, konfigurasi, dan dukungan teknis sistem POS serta jaringan pada restoran dan retail.",
+    responsibilities: [
+      "Setup NCR Aloha POS",
+      "Konfigurasi router, access point, dan WiFi",
+      "Troubleshooting jaringan",
+      "Support onsite & remote",
+      "Maintenance perangkat operasional"
+    ],
+    tools: ["NCR Aloha POS", "Windows", "Ubuntu Linux", "AnyDesk", "TeamViewer"],
+    result:
+      "Stabilitas operasional POS dengan downtime minimal."
+  }
+];
+
+// HEADER
+let html = `
+  <div class="bg-white p-8 rounded-3xl shadow-lg mb-8">
+    <h1 class="text-4xl font-bold mb-3">Muhammad Mukti Munasir Putra</h1>
+    <p class="text-gray-700 text-lg">
+      IT Support Specialist dengan pengalaman ERP, POS System, SQL Database, dan Network Support.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-4 mt-6 text-center">
+      <div class="bg-gray-50 p-4 rounded-xl">
+        <h3 class="text-2xl font-bold text-blue-600">5.665+</h3>
+        <p class="text-sm text-gray-600">Support Cases</p>
+      </div>
+      <div class="bg-gray-50 p-4 rounded-xl">
+        <h3 class="text-2xl font-bold text-blue-600">388+</h3>
+        <p class="text-sm text-gray-600">Clients</p>
+      </div>
+      <div class="bg-gray-50 p-4 rounded-xl">
+        <h3 class="text-2xl font-bold text-blue-600">7+ Years</h3>
+        <p class="text-sm text-gray-600">Experience</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-3xl font-bold mb-6">Portfolio Projects</h2>
+`;
+
+// PROJECT LOOP
+projects.forEach(p => {
+  html += `
+    <div class="bg-white rounded-3xl shadow-xl mb-10 overflow-hidden">
+
+      <img src="${p.image}" class="w-full h-80 object-cover" />
+
+      <div class="p-8">
+        <h3 class="text-2xl font-bold mb-3">${p.title}</h3>
+        <p class="text-gray-700 italic mb-5">${p.description}</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <div>
+            <h4 class="font-bold text-blue-900 mb-2">Tanggung Jawab</h4>
+            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+              ${p.responsibilities.map(r => `<li>${r}</li>`).join("")}
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-blue-900 mb-2">Tools</h4>
+            <div class="flex flex-wrap gap-2">
+              ${p.tools.map(t => `
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                  ${t}
+                </span>
+              `).join("")}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-6 bg-blue-600 text-white p-5 rounded-xl">
+          <b>Hasil:</b> ${p.result}
+        </div>
+
+      </div>
+    </div>
+  `;
+});
+
+// OUTPUT KE HALAMAN
+document.getElementById("app").innerHTML = html;
+</script>
+
+</body>
+</html>
