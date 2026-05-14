@@ -1,854 +1,803 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Mukti Munasir Putra | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ICON TAB -->
-    <link rel="icon" type="image/png"
-    href="https://ui-avatars.com/api/?name=MM&background=0ea5e9&color=fff&bold=true">
+<title>Muhammad Mukti Munasir Putra | IT Support Portfolio</title>
 
-    <!-- TAILWIND -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png"
+href="https://ui-avatars.com/api/?name=MM&background=0ea5e9&color=fff&bold=true">
 
-    <!-- FONT AWESOME -->
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- JSPDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <style>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-        html{
-            scroll-behavior:smooth;
-        }
+<style>
 
-        body{
-            background:linear-gradient(to bottom,#f0f9ff,#dbeafe);
-            color:#0f172a;
-            overflow-x:hidden;
-            transition:.3s;
-        }
+html{
+scroll-behavior:smooth;
+}
 
-        .glass{
-            background:rgba(255,255,255,.65);
-            backdrop-filter:blur(14px);
-            border:1px solid rgba(255,255,255,.4);
-        }
+body{
+background:linear-gradient(to bottom,#f0f9ff,#dbeafe);
+color:#0f172a;
+overflow-x:hidden;
+font-family:Arial,Helvetica,sans-serif;
+}
 
-        .fade-up{
-            opacity:0;
-            transform:translateY(40px);
-            transition:.8s;
-        }
+.glass{
+background:rgba(255,255,255,0.65);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,0.4);
+}
 
-        .fade-up.show{
-            opacity:1;
-            transform:translateY(0);
-        }
+.fade-up{
+opacity:0;
+transform:translateY(40px);
+transition:0.8s;
+}
 
-        .card-hover{
-            transition:.4s;
-        }
+.fade-up.show{
+opacity:1;
+transform:translateY(0);
+}
 
-        .card-hover:hover{
-            transform:translateY(-8px);
-            box-shadow:0 20px 40px rgba(14,165,233,.18);
-        }
+.hero-bg{
+position:absolute;
+inset:0;
+overflow:hidden;
+z-index:-1;
+}
 
-        .hero-bg{
-            position:absolute;
-            inset:0;
-            overflow:hidden;
-            z-index:-1;
-        }
+.blob{
+position:absolute;
+width:500px;
+height:500px;
+background:rgba(56,189,248,0.2);
+filter:blur(100px);
+border-radius:999px;
+animation:float 10s infinite;
+}
 
-        .blob{
-            position:absolute;
-            width:500px;
-            height:500px;
-            border-radius:999px;
-            background:rgba(56,189,248,.18);
-            filter:blur(100px);
-            animation:float 10s infinite;
-        }
+@keyframes float{
+0%,100%{transform:translate(0,0);}
+50%{transform:translate(30px,-20px);}
+}
 
-        @keyframes float{
-            0%,100%{
-                transform:translate(0,0);
-            }
+@keyframes pulse-soft{
+0%,100%{
+opacity:1;
+transform:scale(1);
+}
+50%{
+opacity:0.7;
+transform:scale(1.02);
+}
+}
 
-            50%{
-                transform:translate(30px,-20px);
-            }
-        }
+.animate-blink{
+animation:pulse-soft 2s infinite ease-in-out;
+}
 
-        @keyframes pulse-soft{
-            0%,100%{
-                opacity:1;
-            }
+.contact-card{
+background-color:#0f172a;
+color:white;
+border:1px solid #1e293b;
+}
 
-            50%{
-                opacity:.7;
-            }
-        }
+.input-field{
+background-color:#1e293b;
+border:1px solid #334155;
+color:white;
+}
 
-        .animate-blink{
-            animation:pulse-soft 2s infinite;
-        }
+.input-field::placeholder{
+color:#94a3b8;
+}
 
-    </style>
+.reach-card{
+background:rgba(30,41,59,0.5);
+border:1px solid #334155;
+transition:0.3s;
+}
+
+.reach-card:hover{
+border-color:#10b981;
+background:rgba(16,185,129,0.05);
+}
+
+.skill-badge{
+background:#e0f2fe;
+color:#0369a1;
+padding:10px 16px;
+border-radius:999px;
+font-size:14px;
+font-weight:700;
+display:inline-block;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 
 <nav class="fixed top-0 w-full z-50 glass shadow-sm">
 
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
-        <h1 class="font-black text-2xl text-sky-600 tracking-tight">
-            MUKTI.
-        </h1>
+<h1 class="font-black text-2xl text-sky-600 tracking-tighter">
+MUKTI.
+</h1>
 
-        <div class="flex items-center gap-4 md:gap-8 font-bold text-sm uppercase tracking-widest">
+<div class="flex items-center gap-4 md:gap-8 font-bold text-slate-700 text-sm uppercase tracking-widest">
 
-            <a href="#about" class="hover:text-sky-500 transition">
-                About
-            </a>
+<a href="#about" class="hover:text-sky-500 transition">
+About
+</a>
 
-            <a href="#experience" class="hover:text-sky-500 transition">
-                Experience
-            </a>
+<a href="#experience" class="hover:text-sky-500 transition">
+Experience
+</a>
 
-            <a href="#project" class="hover:text-sky-500 transition">
-                Projects
-            </a>
+<a href="#project" class="hover:text-sky-500 transition">
+Projects
+</a>
 
-            <a href="#contact" class="hover:text-sky-500 transition">
-                Contact
-            </a>
+<a href="#contact" class="hover:text-sky-500 transition">
+Contact
+</a>
 
-            <button onclick="switchLanguage()"
-            class="bg-sky-600 text-white px-4 py-2 rounded-xl hover:bg-sky-700 transition">
+<button onclick="switchLanguage()"
+class="bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition">
+ID / EN
+</button>
 
-                ID / EN
-
-            </button>
-
-        </div>
-
-    </div>
-
+</div>
+</div>
 </nav>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 
 <section class="relative min-h-screen flex items-center justify-center text-center px-6">
 
-    <div class="hero-bg">
-        <div class="blob top-0 left-0"></div>
-        <div class="blob bottom-0 right-0"
-        style="background:rgba(96,165,250,.15)">
-        </div>
-    </div>
+<div class="hero-bg">
+<div class="blob top-0 left-0"></div>
+<div class="blob bottom-0 right-0"
+style="background:rgba(96,165,250,0.15)">
+</div>
+</div>
 
-    <div class="max-w-5xl fade-up show">
+<div class="max-w-5xl fade-up show">
 
-        <!-- BADGE -->
+<div id="hero-badge"
+class="animate-blink inline-flex items-center gap-2 px-5 py-2 rounded-full bg-sky-100 text-sky-700 font-bold mb-8 shadow-sm text-xs border border-sky-200">
 
-        <div id="hero-badge"
-        class="animate-blink inline-flex items-center gap-2 px-5 py-2 rounded-full bg-sky-100 text-sky-700 font-bold mb-8 shadow-sm text-xs border border-sky-200">
+<span class="w-2 h-2 bg-sky-500 rounded-full"></span>
 
-            <span class="w-2 h-2 bg-sky-500 rounded-full"></span>
+Available for Freelance & Contract
 
-            Available for Freelance & Contract
+</div>
 
-        </div>
+<h1 class="text-5xl md:text-8xl font-black text-sky-600 leading-tight mb-8">
 
-        <!-- TITLE -->
+Muhammad Mukti<br>
+Munasir Putra
 
-        <h1 class="text-5xl md:text-8xl font-black text-sky-600 leading-tight mb-8">
+</h1>
 
-            Muhammad Mukti<br>
-            Munasir Putra
+<p id="hero-desc"
+class="text-lg md:text-2xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-medium">
 
-        </h1>
+IT Support Specialist with 7+ years of experience in ERP Systems,
+POS Systems, SQL Database, Networking, and Remote Troubleshooting.
 
-        <!-- DESC -->
+</p>
 
-        <p id="hero-desc"
-        class="text-lg md:text-2xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-medium">
+<div class="flex flex-wrap justify-center gap-4 mt-12">
 
-            IT Support Specialist with 7+ years of experience in ERP Systems,
-            SQL Database, Networking, and Remote Troubleshooting.
+<button onclick="downloadCV()"
+class="bg-sky-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-sky-700 transition transform hover:-translate-y-1">
 
-        </p>
+Download CV
 
-        <!-- BUTTON -->
+</button>
 
-        <div class="flex flex-wrap justify-center gap-4 mt-12">
+<a href="#experience"
+class="bg-white text-sky-600 border-2 border-sky-100 px-8 py-4 rounded-xl font-bold shadow-sm hover:border-sky-500 transition transform hover:-translate-y-1">
 
-            <button onclick="downloadCV()"
-            class="bg-sky-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:bg-sky-700 transition">
+View Experience
 
-                Download CV
+</a>
 
-            </button>
+</div>
 
-            <a href="#experience"
-            class="bg-white text-sky-600 border border-sky-200 px-8 py-4 rounded-2xl font-bold hover:border-sky-500 transition">
-
-                Work Experience
-
-            </a>
-
-            <a href="#contact"
-            class="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-black transition">
-
-                Get In Touch
-
-            </a>
-
-        </div>
-
-    </div>
-
+</div>
 </section>
-
-<!-- ================= CONTENT ================= -->
 
 <div class="max-w-6xl mx-auto px-6 space-y-32 pb-32">
 
-<!-- ================= ABOUT ================= -->
+<!-- ABOUT -->
 
 <section id="about" class="fade-up">
 
-    <div class="glass rounded-[3rem] p-12 shadow-xl text-center">
+<div class="glass rounded-[3rem] p-12 text-center shadow-xl">
 
-        <h2 class="text-4xl font-black text-sky-600 mb-8">
-            About Me
-        </h2>
+<h2 class="text-4xl font-black text-sky-600 mb-8">
+About Me
+</h2>
 
-        <p id="about-content"
-        class="text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto">
+<p id="about-content"
+class="text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto">
 
-            I am an IT Support Specialist with more than 7 years of experience
-            in ERP Support, POS Systems, SQL Database troubleshooting,
-            Networking, and Remote Support.
+I am an IT Support Specialist with more than 7 years of experience
+in ERP Support, POS Systems, SQL Database troubleshooting,
+Networking, and Remote Support. Supported more than 388+
+business clients including VIP and VVIP customers.
 
-            Experienced in handling 5,665+ support cases and supporting
-            388+ business clients including VIP and VVIP customers.
+</p>
 
-        </p>
-
-    </div>
-
+</div>
 </section>
 
-<!-- ================= SKILLS ================= -->
+<!-- TECHNICAL SKILLS -->
 
-<section id="skills" class="fade-up">
+<section class="fade-up">
 
-    <h2 class="text-4xl font-black text-sky-600 mb-12 text-center">
-        Technical Skills
-    </h2>
+<h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
+Technical Skills
+</h2>
 
-    <div class="grid md:grid-cols-3 gap-6">
+<div class="glass rounded-[3rem] p-10 shadow-xl">
 
-        <!-- CARD -->
+<div class="flex flex-wrap gap-4 justify-center">
 
-        <div class="glass rounded-3xl p-6 shadow-lg card-hover">
-
-            <h3 class="font-bold text-sky-600 text-xl mb-5">
-                System & Support
-            </h3>
-
-            <div class="flex flex-wrap gap-3">
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">ERP Support</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Remote Support</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Troubleshooting</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Windows Server</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">AnyDesk</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">TeamViewer</span>
-
-            </div>
-
-        </div>
-
-        <!-- CARD -->
-
-        <div class="glass rounded-3xl p-6 shadow-lg card-hover">
-
-            <h3 class="font-bold text-sky-600 text-xl mb-5">
-                Networking
-            </h3>
-
-            <div class="flex flex-wrap gap-3">
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">TCP/IP</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">WiFi Setup</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Router Configuration</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Access Point</span>
-
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Network Troubleshooting</span>
-
-            </div>
-
-        </div>
-
-        <!-- CARD -->
-
-        <div class="glass rounded-3xl p-6 shadow-lg card-hover">
-
-            <h3 class="font-bold text-sky-600 text-xl mb-5">
-                Database & POS
-            </h3>
-
-<div class="flex flex-wrap gap-3">
-
-    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
-        SQL
-    </span>
-
-    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
-        SQL Troubleshooting
-    </span>
-
-    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
-        POS System
-    </span>
-
-    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
-        NCR Aloha
-    </span>
-
-    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
-        Printer Configuration
-    </span>
+<span class="skill-badge">SISCOM ERP</span>
+<span class="skill-badge">SISCOM POS</span>
+<span class="skill-badge">NCR Aloha POS</span>
+<span class="skill-badge">SQL Troubleshooting</span>
+<span class="skill-badge">ERP Support</span>
+<span class="skill-badge">POS Support</span>
+<span class="skill-badge">Networking</span>
+<span class="skill-badge">WiFi Setup</span>
+<span class="skill-badge">Remote Support</span>
+<span class="skill-badge">AnyDesk</span>
+<span class="skill-badge">TeamViewer</span>
+<span class="skill-badge">Remote Desktop</span>
+<span class="skill-badge">Windows Support</span>
+<span class="skill-badge">Ubuntu Support</span>
 
 </div>
 
-        </div>
-
-    </div>
-
+</div>
 </section>
 
-<!-- ================= SOFT SKILLS ================= -->
-
-<section id="softskills" class="fade-up">
-
-    <h2 class="text-4xl font-black text-sky-600 mb-12 text-center">
-        Soft Skills
-    </h2>
-
-    <div class="glass rounded-[2rem] p-10 shadow-xl">
-
-        <div class="grid md:grid-cols-3 gap-8 text-center">
-
-            <div>
-
-                <i class="fa-solid fa-comments text-sky-500 text-5xl mb-5"></i>
-
-                <h3 class="font-bold text-xl mb-3">
-                    Communication
-                </h3>
-
-                <p class="text-slate-600">
-                    Clear communication with users and clients.
-                </p>
-
-            </div>
-
-            <div>
-
-                <i class="fa-solid fa-lightbulb text-sky-500 text-5xl mb-5"></i>
-
-                <h3 class="font-bold text-xl mb-3">
-                    Problem Solving
-                </h3>
-
-                <p class="text-slate-600">
-                    Strong troubleshooting and analytical thinking.
-                </p>
-
-            </div>
-
-            <div>
-
-                <i class="fa-solid fa-clock text-sky-500 text-5xl mb-5"></i>
-
-                <h3 class="font-bold text-xl mb-3">
-                    Time Management
-                </h3>
-
-                <p class="text-slate-600">
-                    Fast response and efficient issue handling.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= EXPERIENCE ================= -->
+<!-- EXPERIENCE -->
 
 <section id="experience" class="fade-up">
 
-    <h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
-        Work Experience
-    </h2>
+<h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
+Work Experience
+</h2>
 
-    <div class="space-y-6">
+<div class="space-y-6">
 
-        <!-- SISCOM -->
+<div class="glass rounded-3xl p-10 shadow-lg">
 
-        <div class="glass rounded-3xl p-10 shadow-lg">
+<div class="flex justify-between items-start mb-6">
 
-            <div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-2xl font-bold text-slate-800">
+PT. Shan Informasi Sistem (SISCOM)
+</h3>
 
-                <div>
+<p class="text-sky-600 font-bold">
+IT Support Officer
+</p>
+</div>
 
-                    <h3 class="text-2xl font-bold text-slate-800">
-                        PT. Shan Informasi Sistem (SISCOM)
-                    </h3>
+<span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+2021 - Present
+</span>
 
-                    <p class="text-sky-600 font-bold">
-                        IT Support Officer
-                    </p>
+</div>
 
-                </div>
+<ul id="exp-1"
+class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
 
-                <span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+<li>Troubleshooting SISCOM ERP and SISCOM POS systems.</li>
 
-                    2021 - Present
+<li>SQL troubleshooting and database maintenance.</li>
 
-                </span>
+<li>Handled over 5,665 support cases.</li>
 
-            </div>
+<li>Supported 388+ business clients.</li>
 
-            <ul id="exp-1"
-            class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
+</ul>
 
-                <li>Troubleshooting ERP systems and SQL databases.</li>
-                <li>Handled over 5,665 support cases.</li>
-                <li>Supported 388+ business clients.</li>
+</div>
 
-            </ul>
+<div class="glass rounded-3xl p-10 shadow-lg">
 
-        </div>
+<div class="flex justify-between items-start mb-6">
 
-        <!-- QC -->
+<div>
+<h3 class="text-2xl font-bold text-slate-800">
+PT. Shan Informasi Sistem (SISCOM)
+</h3>
 
-        <div class="glass rounded-3xl p-10 shadow-lg">
+<p class="text-sky-600 font-bold">
+IT Quality Control
+</p>
+</div>
 
-            <div class="flex justify-between items-start mb-6">
+<span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+2020 - 2021
+</span>
 
-                <div>
+</div>
 
-                    <h3 class="text-2xl font-bold text-slate-800">
-                        PT. Shan Informasi Sistem (SISCOM)
-                    </h3>
+<ul id="exp-2"
+class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
 
-                    <p class="text-sky-600 font-bold">
-                        IT Quality Control
-                    </p>
+<li>Performed ERP system testing and validation.</li>
 
-                </div>
+<li>Ensured software quality before deployment.</li>
 
-                <span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+<li>Collaborated with developers and support teams.</li>
 
-                    2020 - 2021
+</ul>
 
-                </span>
+</div>
 
-            </div>
+<div class="glass rounded-3xl p-10 shadow-lg">
 
-            <ul id="exp-2"
-            class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
+<div class="flex justify-between items-start mb-6">
 
-                <li>Validated software fixes and application updates.</li>
-                <li>Performed system testing and quality assurance.</li>
+<div>
+<h3 class="text-2xl font-bold text-slate-800">
+Intertama Metadata IT Consulting
+</h3>
 
-            </ul>
+<p class="text-sky-600 font-bold">
+IT Support
+</p>
+</div>
 
-        </div>
+<span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+2016 - 2020
+</span>
 
-        <!-- INTERTAMA -->
+</div>
 
-        <div class="glass rounded-3xl p-10 shadow-lg">
+<ul id="exp-3"
+class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
 
-            <div class="flex justify-between items-start mb-6">
+<li>Setup and support NCR Aloha POS systems.</li>
 
-                <div>
+<li>Router, printer, and WiFi configuration.</li>
 
-                    <h3 class="text-2xl font-bold text-slate-800">
-                        INTERTAMA METADATA IT CONSULTING
-                    </h3>
+<li>Remote and onsite technical troubleshooting.</li>
 
-                    <p class="text-sky-600 font-bold">
-                        IT Support
-                    </p>
+<li>Windows and Ubuntu support.</li>
 
-                </div>
+</ul>
 
-                <span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+</div>
 
-                    2016 - 2020
-
-                </span>
-
-            </div>
-
-            <ul id="exp-3"
-            class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
-
-                <li>Setup NCR Aloha POS systems.</li>
-                <li>Configured routers, WiFi, and networking.</li>
-                <li>Provided onsite and remote support.</li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
+</div>
 </section>
 
-<!-- ================= PROJECTS ================= -->
+<!-- PROJECTS -->
 
 <section id="project" class="fade-up">
 
-    <h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
-        Featured Projects
-    </h2>
+<h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
+Featured Projects
+</h2>
 
-    <div class="grid md:grid-cols-2 gap-8">
+<div class="grid md:grid-cols-2 gap-8">
 
-        <!-- PROJECT -->
+<div class="glass rounded-[2.5rem] overflow-hidden shadow-lg group">
 
-        <div class="glass rounded-[2.5rem] overflow-hidden shadow-lg card-hover">
+<div class="h-64 overflow-hidden">
 
-            <img
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80"
-            class="h-64 w-full object-cover">
+<img
+src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80"
+class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
 
-            <div class="p-8">
+</div>
 
-                <h3 class="text-2xl font-bold mb-4">
-                    ERP Support System
-                </h3>
+<div class="p-8">
 
-                <p id="proj-1"
-                class="text-slate-600 leading-relaxed">
+<h3 class="text-2xl font-bold mb-4">
+ERP Support System
+</h3>
 
-                    ERP troubleshooting, SQL database optimization,
-                    and remote support for enterprise clients.
+<p id="proj-1-desc" class="text-slate-600 leading-relaxed">
 
-                </p>
+Troubleshooting SISCOM ERP & SISCOM POS systems,
+including SQL troubleshooting, remote support,
+database maintenance, and printer configuration.
 
-            </div>
+</p>
 
-        </div>
+</div>
+</div>
 
-        <!-- PROJECT -->
+<div class="glass rounded-[2.5rem] overflow-hidden shadow-lg group">
 
-        <div class="glass rounded-[2.5rem] overflow-hidden shadow-lg card-hover">
+<div class="h-64 overflow-hidden">
 
-            <img
-            src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&q=80"
-            class="h-64 w-full object-cover">
+<img
+src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&q=80"
+class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
 
-            <div class="p-8">
+</div>
 
-                <h3 class="text-2xl font-bold mb-4">
-                    POS System & Network Setup
-                </h3>
+<div class="p-8">
 
-                <p id="proj-2"
-                class="text-slate-600 leading-relaxed">
+<h3 class="text-2xl font-bold mb-4">
+POS System & Network Setup
+</h3>
 
-                    NCR Aloha POS setup, network infrastructure,
-                    and WiFi configuration for retail businesses.
+<p id="proj-2-desc" class="text-slate-600 leading-relaxed">
 
-                </p>
+Configured NCR Aloha POS systems,
+networking infrastructure, routers,
+WiFi setup, and technical support for retail businesses.
 
-            </div>
+</p>
 
-        </div>
+</div>
+</div>
 
-    </div>
-
+</div>
 </section>
 
-<!-- ================= CONTACT ================= -->
+<!-- SOFT SKILLS -->
+
+<section class="fade-up">
+
+<h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
+Soft Skills
+</h2>
+
+<div class="grid md:grid-cols-4 gap-6">
+
+<div class="glass rounded-[2rem] p-6 text-center shadow-lg">
+<i class="fa-solid fa-lightbulb text-sky-600 text-3xl mb-5"></i>
+<h3 class="font-bold text-lg mb-2">Problem Solving</h3>
+<p class="text-sm text-slate-500">
+Analytical troubleshooting for ERP, POS, and networking issues.
+</p>
+</div>
+
+<div class="glass rounded-[2rem] p-6 text-center shadow-lg">
+<i class="fa-solid fa-comments text-sky-600 text-3xl mb-5"></i>
+<h3 class="font-bold text-lg mb-2">Communication</h3>
+<p class="text-sm text-slate-500">
+Clear technical communication with clients and users.
+</p>
+</div>
+
+<div class="glass rounded-[2rem] p-6 text-center shadow-lg">
+<i class="fa-solid fa-brain text-sky-600 text-3xl mb-5"></i>
+<h3 class="font-bold text-lg mb-2">Analytical Thinking</h3>
+<p class="text-sm text-slate-500">
+Strong root cause analysis and troubleshooting logic.
+</p>
+</div>
+
+<div class="glass rounded-[2rem] p-6 text-center shadow-lg">
+<i class="fa-solid fa-clock text-sky-600 text-3xl mb-5"></i>
+<h3 class="font-bold text-lg mb-2">Time Management</h3>
+<p class="text-sm text-slate-500">
+Quick response and effective support ticket handling.
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
 
 <section id="contact" class="fade-up">
 
-    <h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
-        Get In Touch
-    </h2>
+<h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
+Get In Touch
+</h2>
 
-    <div class="glass rounded-[3rem] p-12 shadow-xl">
+<div class="contact-card rounded-[2rem] p-8 md:p-12 shadow-2xl">
 
-        <div class="grid md:grid-cols-3 gap-8">
+<div class="grid md:grid-cols-3 gap-8">
 
-            <a href="mailto:muhmukti9@gmail.com"
-            class="bg-slate-900 text-white p-8 rounded-3xl hover:-translate-y-2 transition">
+<a href="mailto:muhmukti9@gmail.com"
+class="reach-card p-6 rounded-2xl text-center">
 
-                <i class="fa-solid fa-envelope text-4xl mb-5 text-sky-400"></i>
+<i class="fa-solid fa-envelope text-emerald-400 text-3xl mb-4"></i>
 
-                <h3 class="font-bold text-xl mb-2">
-                    Email
-                </h3>
+<h3 class="font-bold text-xl mb-2">
+Email
+</h3>
 
-                <p class="opacity-70">
-                    muhmukti9@gmail.com
-                </p>
+<p class="text-slate-300">
+muhmukti9@gmail.com
+</p>
 
-            </a>
+</a>
 
-            <a href="https://api.whatsapp.com/send/?phone=6285713021839&text&type=phone_number&app_absent=0"
-            target="_blank"
-            class="bg-slate-900 text-white p-8 rounded-3xl hover:-translate-y-2 transition">
+<a href="https://wa.me/6285713021839"
+target="_blank"
+class="reach-card p-6 rounded-2xl text-center">
 
-                <i class="fa-brands fa-whatsapp text-4xl mb-5 text-green-400"></i>
+<i class="fa-brands fa-whatsapp text-emerald-400 text-3xl mb-4"></i>
 
-                <h3 class="font-bold text-xl mb-2">
-                    WhatsApp
-                </h3>
+<h3 class="font-bold text-xl mb-2">
+WhatsApp
+</h3>
 
-                <p class="opacity-70">
-                    +62 85713021839
-                </p>
+<p class="text-slate-300">
++62 857-1302-1839
+</p>
 
-            </a>
+</a>
 
-            <a href="https://www.linkedin.com/in/muhammad-mukti-munasir-putra/"
-            target="_blank"
-            class="bg-slate-900 text-white p-8 rounded-3xl hover:-translate-y-2 transition">
+<a href="https://www.linkedin.com/in/muhammad-mukti-munasir-putra/"
+target="_blank"
+class="reach-card p-6 rounded-2xl text-center">
 
-                <i class="fa-brands fa-linkedin text-4xl mb-5 text-blue-400"></i>
+<i class="fa-brands fa-linkedin text-sky-400 text-3xl mb-4"></i>
 
-                <h3 class="font-bold text-xl mb-2">
-                    LinkedIn
-                </h3>
+<h3 class="font-bold text-xl mb-2">
+LinkedIn
+</h3>
 
-                <p class="opacity-70">
-                    Connect with me
-                </p>
+<p class="text-slate-300">
+View Profile
+</p>
 
-            </a>
+</a>
 
-        </div>
+</div>
 
-    </div>
-
+</div>
 </section>
 
 </div>
 
-<!-- ================= FOOTER ================= -->
-
-<footer class="text-center py-10 text-slate-400 font-medium border-t border-slate-200">
-
-    © 2026 Muhammad Mukti Munasir Putra
-
+<footer class="text-center py-12 text-slate-400 font-medium border-t border-slate-200">
+© 2026 Muhammad Mukti Munasir Putra
 </footer>
-
-<!-- ================= SCRIPT ================= -->
 
 <script>
 
 let isEnglish = true;
 
-/* ================= LANGUAGE ================= */
-
 function switchLanguage(){
 
-    isEnglish = !isEnglish;
+isEnglish = !isEnglish;
 
-    const heroBadge = document.getElementById("hero-badge");
-    const heroDesc = document.getElementById("hero-desc");
-    const about = document.getElementById("about-content");
+const heroBadge = document.getElementById("hero-badge");
+const heroDesc = document.getElementById("hero-desc");
+const aboutContent = document.getElementById("about-content");
 
-    const exp1 = document.getElementById("exp-1");
-    const exp2 = document.getElementById("exp-2");
-    const exp3 = document.getElementById("exp-3");
+const exp1 = document.getElementById("exp-1");
+const exp2 = document.getElementById("exp-2");
+const exp3 = document.getElementById("exp-3");
 
-    const proj1 = document.getElementById("proj-1");
-    const proj2 = document.getElementById("proj-2");
+const proj1 = document.getElementById("proj-1-desc");
+const proj2 = document.getElementById("proj-2-desc");
 
-    if(!isEnglish){
+if(!isEnglish){
 
-        heroBadge.innerHTML =
-        `<span class="w-2 h-2 bg-sky-500 rounded-full"></span>
-        Tersedia untuk Freelance & Kontrak`;
+heroBadge.innerHTML =
+`<span class="w-2 h-2 bg-sky-500 rounded-full"></span>
+Tersedia untuk Freelance & Kontrak`;
 
-        heroDesc.innerText =
-        "IT Support Specialist dengan pengalaman 7+ tahun dalam ERP System, SQL Database, Networking, dan Remote Troubleshooting.";
+heroDesc.innerText =
+"IT Support Specialist dengan pengalaman 7+ tahun dalam ERP, POS System, SQL Database, Networking, dan Remote Troubleshooting.";
 
-        about.innerText =
-        "Saya adalah IT Support Specialist dengan pengalaman lebih dari 7 tahun dalam ERP Support, POS System, SQL Database, Networking, dan Remote Support. Berpengalaman menangani lebih dari 5.665 kasus support dan mendukung lebih dari 388 klien bisnis.";
+aboutContent.innerText =
+"Saya adalah IT Support Specialist dengan pengalaman lebih dari 7 tahun dalam ERP Support, POS Systems, SQL Database troubleshooting, Networking, dan Remote Support.";
 
-        exp1.innerHTML =
-        `
-        <li>Troubleshooting ERP dan database SQL.</li>
-        <li>Menangani lebih dari 5.665 kasus support.</li>
-        <li>Mendukung 388+ klien bisnis.</li>
-        `;
+exp1.innerHTML = `
+<li>Troubleshooting SISCOM ERP dan SISCOM POS.</li>
+<li>Troubleshooting SQL dan maintenance database.</li>
+<li>Menangani lebih dari 5.665 kasus support.</li>
+<li>Mendukung lebih dari 388 klien bisnis.</li>`;
 
-        exp2.innerHTML =
-        `
-        <li>Melakukan validasi software dan update sistem.</li>
-        <li>Testing aplikasi dan quality assurance.</li>
-        `;
+exp2.innerHTML = `
+<li>Testing dan validasi sistem ERP.</li>
+<li>Memastikan kualitas software sebelum deployment.</li>
+<li>Bekerja sama dengan tim developer dan support.</li>`;
 
-        exp3.innerHTML =
-        `
-        <li>Setup NCR Aloha POS System.</li>
-        <li>Konfigurasi router, WiFi, dan jaringan.</li>
-        <li>Support onsite dan remote.</li>
-        `;
+exp3.innerHTML = `
+<li>Setup dan support NCR Aloha POS.</li>
+<li>Konfigurasi router, printer, dan WiFi.</li>
+<li>Troubleshooting remote dan onsite.</li>
+<li>Support Windows dan Ubuntu.</li>`;
 
-        proj1.innerText =
-        "Troubleshooting ERP, optimasi SQL database, dan remote support untuk klien perusahaan.";
+proj1.innerText =
+"Troubleshooting SISCOM ERP & SISCOM POS termasuk troubleshooting SQL, remote support, maintenance database, dan konfigurasi printer.";
 
-        proj2.innerText =
-        "Setup NCR Aloha POS, infrastruktur jaringan, dan konfigurasi WiFi untuk bisnis retail.";
+proj2.innerText =
+"Konfigurasi NCR Aloha POS, infrastruktur jaringan, router, WiFi, dan technical support untuk bisnis retail.";
 
-    }
+}else{
 
-    else{
-
-        location.reload();
-
-    }
+location.reload();
 
 }
 
-/* ================= DOWNLOAD CV ================= */
+}
 
 async function downloadCV(){
 
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
 
-    /* HEADER */
+doc.setFillColor(14,165,233);
+doc.rect(0,0,210,40,"F");
 
-    if(isEnglish){
-        doc.setFillColor(14,165,233);
-    }else{
-        doc.setFillColor(15,23,42);
-    }
+doc.setTextColor(255,255,255);
+doc.setFontSize(22);
+doc.setFont("helvetica","bold");
 
-    doc.rect(0,0,210,40,"F");
+doc.text("MUHAMMAD MUKTI MUNASIR PUTRA",15,18);
 
-    doc.setTextColor(255,255,255);
+doc.setFontSize(11);
+doc.setFont("helvetica","normal");
 
-    doc.setFont("helvetica","bold");
-    doc.setFontSize(22);
+doc.text(
+"IT Support Specialist | ERP Support | POS Support",
+15,
+28
+);
 
-    doc.text("MUHAMMAD MUKTI MUNASIR PUTRA",15,18);
+doc.text(
+"Tangerang, Indonesia | 085713021839 | muhmukti9@gmail.com",
+15,
+35
+);
 
-    doc.setFont("helvetica","normal");
-    doc.setFontSize(11);
+doc.setTextColor(15,23,42);
 
-    doc.text(
-    "IT Support Specialist | ERP | POS | Networking",
-    15,
-    28
-    );
+doc.setFont("helvetica","bold");
+doc.setFontSize(15);
 
-    /* CONTACT */
+doc.text("Professional Summary",15,55);
 
-    doc.setTextColor(30,41,59);
-    doc.setFontSize(10);
+doc.setFont("helvetica","normal");
+doc.setFontSize(10);
 
-    doc.text("Email : muhmukti9@gmail.com",15,52);
-    doc.text("Phone : +62 85713021839",15,58);
-    doc.text("Location : Tangerang, Indonesia",15,64);
+const summary =
+"IT Support Specialist with more than 7 years of experience supporting SISCOM ERP, SISCOM POS, NCR Aloha POS, SQL databases, networking, and remote troubleshooting.";
 
-    /* SUMMARY */
+doc.text(
+doc.splitTextToSize(summary,180),
+15,
+63
+);
 
-    doc.setFont("helvetica","bold");
-    doc.setFontSize(14);
+doc.setFont("helvetica","bold");
+doc.setFontSize(15);
 
-    if(isEnglish){
-        doc.setTextColor(14,165,233);
-    }else{
-        doc.setTextColor(15,23,42);
-    }
+doc.text("Technical Skills",15,92);
 
-    doc.text(
-    isEnglish ? "Professional Summary" : "Profil Singkat",
-    15,
-    80
-    );
+doc.setFont("helvetica","normal");
+doc.setFontSize(10);
 
-    doc.setFont("helvetica","normal");
-    doc.setFontSize(10);
-    doc.setTextColor(71,85,105);
+doc.text("• SISCOM ERP",20,102);
+doc.text("• SISCOM POS",20,110);
+doc.text("• NCR Aloha POS",20,118);
+doc.text("• SQL Troubleshooting",20,126);
+doc.text("• Networking",20,134);
+doc.text("• Remote Support",20,142);
 
-    const summary = isEnglish
-    ?
-`IT Support Specialist with more than 7 years of experience in ERP Support, POS Systems, SQL Database, Networking, and Remote Troubleshooting. Experienced in handling over 5,665 support cases and supporting more than 388 business clients.`
-    :
-`IT Support Specialist dengan pengalaman lebih dari 7 tahun dalam ERP Support, POS System, SQL Database, Networking, dan Remote Troubleshooting. Berpengalaman menangani lebih dari 5.665 kasus support dan mendukung lebih dari 388 klien bisnis.`;
+doc.setFont("helvetica","bold");
+doc.setFontSize(15);
 
-    const splitSummary = doc.splitTextToSize(summary,180);
+doc.text("Work Experience",15,165);
 
-    doc.text(splitSummary,15,88);
+doc.setFont("helvetica","bold");
+doc.setFontSize(11);
 
-    /* SAVE */
+doc.text("PT. Shan Informasi Sistem (SISCOM)",15,178);
 
-    doc.save(
-    isEnglish
-    ?
-    "CV_Muhammad_Mukti_EN.pdf"
-    :
-    "CV_Muhammad_Mukti_ID.pdf"
-    );
+doc.setFont("helvetica","normal");
+doc.setFontSize(10);
+
+doc.text("IT Support Officer | 2021 - Present",15,186);
+
+doc.text("• Troubleshooting SISCOM ERP & SISCOM POS",20,196);
+doc.text("• SQL troubleshooting & database maintenance",20,204);
+doc.text("• Handled over 5,665 support cases",20,212);
+
+doc.text("PT. Shan Informasi Sistem (SISCOM)",15,228);
+doc.text("IT Quality Control | 2020 - 2021",15,236);
+
+doc.text("• ERP testing and validation",20,246);
+doc.text("• Software quality assurance",20,254);
+
+doc.addPage();
+
+doc.setFont("helvetica","bold");
+doc.setFontSize(11);
+
+doc.text("Intertama Metadata IT Consulting",15,25);
+
+doc.setFont("helvetica","normal");
+doc.setFontSize(10);
+
+doc.text("IT Support | 2016 - 2020",15,33);
+
+doc.text("• Setup NCR Aloha POS systems",20,43);
+doc.text("• Network and WiFi configuration",20,51);
+doc.text("• Remote and onsite troubleshooting",20,59);
+
+doc.setFont("helvetica","bold");
+doc.setFontSize(15);
+
+doc.text("Featured Projects",15,90);
+
+doc.setFont("helvetica","bold");
+doc.setFontSize(11);
+
+doc.text("ERP Support System",15,104);
+
+doc.setFont("helvetica","normal");
+doc.setFontSize(10);
+
+doc.text(
+doc.splitTextToSize(
+"Troubleshooting SISCOM ERP & SISCOM POS systems including SQL troubleshooting and remote support.",
+170
+),
+15,
+112
+);
+
+doc.setFont("helvetica","bold");
+doc.setFontSize(11);
+
+doc.text("POS System & Network Setup",15,140);
+
+doc.setFont("helvetica","normal");
+doc.setFontSize(10);
+
+doc.text(
+doc.splitTextToSize(
+"Configured NCR Aloha POS systems, networking infrastructure, routers, and WiFi setup.",
+170
+),
+15,
+148
+);
+
+doc.save(
+isEnglish
+? "CV_Muhammad_Mukti_EN.pdf"
+: "CV_Muhammad_Mukti_ID.pdf"
+);
 
 }
 
-/* ================= ANIMATION ================= */
-
 const observer = new IntersectionObserver(entries=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-},{threshold:.1});
-
-document.querySelectorAll(".fade-up").forEach(el=>{
-
-    observer.observe(el);
-
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
 });
+},{threshold:0.1});
+
+document.querySelectorAll(".fade-up")
+.forEach(el=>observer.observe(el));
 
 </script>
 
