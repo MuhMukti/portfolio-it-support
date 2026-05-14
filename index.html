@@ -1,201 +1,856 @@
-export default function PortfolioWebsite() {
-  const projects = [
-    {
-      title: 'ERP Support System',
-      image:
-        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop',
-      short:
-        'Troubleshooting SISCOM ERP, SQL Server, dan optimasi database.',
-      description:
-        'Spesialis dalam troubleshooting sistem ERP SISCOM, maintenance SQL Server/MariaDB, serta dukungan remote menggunakan AnyDesk dan RDC untuk memastikan operasional bisnis tetap berjalan tanpa kendala teknis.',
-    },
-    {
-      title: 'POS System & Network',
-      image:
-        'https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=1200&auto=format&fit=crop',
-      short:
-        'Setup NCR Aloha POS, implementasi jaringan retail, dan hardware support.',
-      description:
-        'Berpengalaman dalam setup NCR Aloha POS untuk industri F&B, konfigurasi infrastruktur jaringan (Router/AP), serta pemeliharaan hardware seperti printer thermal Zebra dan Epson.',
-    },
-  ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Mukti Munasir Putra | Portfolio</title>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-blue-100 text-slate-800 scroll-smooth">
-      <nav className="fixed top-0 w-full backdrop-blur-xl bg-white/70 border-b border-sky-100 z-50 shadow-sm">
-        <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
-          <h1 className="text-2xl font-bold text-sky-600">Mukti Portfolio</h1>
+    <!-- ICON TAB -->
+    <link rel="icon" type="image/png"
+    href="https://ui-avatars.com/api/?name=MM&background=0ea5e9&color=fff&bold=true">
 
-          <div className="flex gap-6 font-medium items-center">
-            <a href="#project" className="hover:text-sky-500 transition">
-              Project
-            </a>
-            <a href="#contact" className="hover:text-sky-500 transition">
-              Contact
-            </a>
-          </div>
-        </div>
-      </nav>
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-      <section className="pt-36 pb-20 px-6 text-center max-w-5xl mx-auto">
-        <div className="inline-block bg-sky-100 text-sky-700 px-5 py-2 rounded-full font-semibold mb-6 shadow-sm">
-          Remote IT Support Specialist
-        </div>
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-        <h1 className="text-5xl md:text-7xl font-black text-sky-600 leading-tight mb-6">
-          Muhammad Mukti
-          <br />
-          Munasir Putra
+    <!-- JSPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:linear-gradient(to bottom,#f0f9ff,#dbeafe);
+            color:#0f172a;
+            overflow-x:hidden;
+            transition:.3s;
+        }
+
+        .glass{
+            background:rgba(255,255,255,.65);
+            backdrop-filter:blur(14px);
+            border:1px solid rgba(255,255,255,.4);
+        }
+
+        .fade-up{
+            opacity:0;
+            transform:translateY(40px);
+            transition:.8s;
+        }
+
+        .fade-up.show{
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        .card-hover{
+            transition:.4s;
+        }
+
+        .card-hover:hover{
+            transform:translateY(-8px);
+            box-shadow:0 20px 40px rgba(14,165,233,.18);
+        }
+
+        .hero-bg{
+            position:absolute;
+            inset:0;
+            overflow:hidden;
+            z-index:-1;
+        }
+
+        .blob{
+            position:absolute;
+            width:500px;
+            height:500px;
+            border-radius:999px;
+            background:rgba(56,189,248,.18);
+            filter:blur(100px);
+            animation:float 10s infinite;
+        }
+
+        @keyframes float{
+            0%,100%{
+                transform:translate(0,0);
+            }
+
+            50%{
+                transform:translate(30px,-20px);
+            }
+        }
+
+        @keyframes pulse-soft{
+            0%,100%{
+                opacity:1;
+            }
+
+            50%{
+                opacity:.7;
+            }
+        }
+
+        .animate-blink{
+            animation:pulse-soft 2s infinite;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="fixed top-0 w-full z-50 glass shadow-sm">
+
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+
+        <h1 class="font-black text-2xl text-sky-600 tracking-tight">
+            MUKTI.
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-          IT Support Specialist dengan pengalaman 7+ tahun dalam ERP Systems,
-          POS, SQL Database, Networking, dan Remote Troubleshooting untuk
-          berbagai bisnis dan klien VIP.
+        <div class="flex items-center gap-4 md:gap-8 font-bold text-sm uppercase tracking-widest">
+
+            <a href="#about" class="hover:text-sky-500 transition">
+                About
+            </a>
+
+            <a href="#experience" class="hover:text-sky-500 transition">
+                Experience
+            </a>
+
+            <a href="#project" class="hover:text-sky-500 transition">
+                Projects
+            </a>
+
+            <a href="#contact" class="hover:text-sky-500 transition">
+                Contact
+            </a>
+
+            <button onclick="switchLanguage()"
+            class="bg-sky-600 text-white px-4 py-2 rounded-xl hover:bg-sky-700 transition">
+
+                ID / EN
+
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="relative min-h-screen flex items-center justify-center text-center px-6">
+
+    <div class="hero-bg">
+        <div class="blob top-0 left-0"></div>
+        <div class="blob bottom-0 right-0"
+        style="background:rgba(96,165,250,.15)">
+        </div>
+    </div>
+
+    <div class="max-w-5xl fade-up show">
+
+        <!-- BADGE -->
+
+        <div id="hero-badge"
+        class="animate-blink inline-flex items-center gap-2 px-5 py-2 rounded-full bg-sky-100 text-sky-700 font-bold mb-8 shadow-sm text-xs border border-sky-200">
+
+            <span class="w-2 h-2 bg-sky-500 rounded-full"></span>
+
+            Available for Freelance & Contract
+
+        </div>
+
+        <!-- TITLE -->
+
+        <h1 class="text-5xl md:text-8xl font-black text-sky-600 leading-tight mb-8">
+
+            Muhammad Mukti<br>
+            Munasir Putra
+
+        </h1>
+
+        <!-- DESC -->
+
+        <p id="hero-desc"
+        class="text-lg md:text-2xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-medium">
+
+            IT Support Specialist with 7+ years of experience in ERP Systems,
+            SQL Database, Networking, and Remote Troubleshooting.
+
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4 mt-10">
-          <a
-            href="https://api.whatsapp.com/send/?phone=6285713021839&text&type=phone_number&app_absent=0"
-            target="_blank"
-            className="bg-sky-500 hover:bg-sky-600 transition text-white px-8 py-4 rounded-full font-bold shadow-xl hover:-translate-y-1"
-          >
-            Contact WhatsApp
-          </a>
+        <!-- BUTTON -->
 
-          <a
-            href="https://www.linkedin.com/in/muhammad-mukti-munasir-putra/details/certifications/edit/forms/2011217320/"
-            target="_blank"
-            className="bg-white hover:bg-sky-50 border border-sky-200 transition px-8 py-4 rounded-full font-bold shadow-lg hover:-translate-y-1"
-          >
-            LinkedIn Profile
-          </a>
-        </div>
-      </section>
+        <div class="flex flex-wrap justify-center gap-4 mt-12">
 
-      <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 px-6 mb-24">
-        <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 text-center hover:-translate-y-2 transition duration-300">
-          <h3 className="text-4xl font-black text-sky-600">5.665+</h3>
-          <p className="mt-2 text-slate-600">Kasus Support Terselesaikan</p>
-        </div>
+            <button onclick="downloadCV()"
+            class="bg-sky-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:bg-sky-700 transition">
 
-        <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 text-center hover:-translate-y-2 transition duration-300">
-          <h3 className="text-4xl font-black text-sky-600">388+</h3>
-          <p className="mt-2 text-slate-600">Client Didukung</p>
+                Download CV
+
+            </button>
+
+            <a href="#experience"
+            class="bg-white text-sky-600 border border-sky-200 px-8 py-4 rounded-2xl font-bold hover:border-sky-500 transition">
+
+                Work Experience
+
+            </a>
+
+            <a href="#contact"
+            class="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-black transition">
+
+                Get In Touch
+
+            </a>
+
         </div>
 
-        <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 text-center hover:-translate-y-2 transition duration-300">
-          <h3 className="text-4xl font-black text-sky-600">7+ Tahun</h3>
-          <p className="mt-2 text-slate-600">Pengalaman Industri</p>
-        </div>
-      </section>
+    </div>
 
-      <section id="project" className="max-w-6xl mx-auto px-6 mb-28">
-        <h2 className="text-4xl font-black text-sky-600 mb-10 text-center">
-          Work Experience & Portfolio
+</section>
+
+<!-- ================= CONTENT ================= -->
+
+<div class="max-w-6xl mx-auto px-6 space-y-32 pb-32">
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="fade-up">
+
+    <div class="glass rounded-[3rem] p-12 shadow-xl text-center">
+
+        <h2 class="text-4xl font-black text-sky-600 mb-8">
+            About Me
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-10">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group bg-white/70 backdrop-blur-xl rounded-[2rem] overflow-hidden shadow-xl border border-white/50 hover:-translate-y-3 transition duration-500"
-            >
-              <div className="overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-72 object-cover group-hover:scale-105 transition duration-700"
-                />
-              </div>
+        <p id="about-content"
+        class="text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto">
 
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-sky-600 mb-4">
-                  {project.title}
+            I am an IT Support Specialist with more than 7 years of experience
+            in ERP Support, POS Systems, SQL Database troubleshooting,
+            Networking, and Remote Support.
+
+            Experienced in handling 5,665+ support cases and supporting
+            388+ business clients including VIP and VVIP customers.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= SKILLS ================= -->
+
+<section id="skills" class="fade-up">
+
+    <h2 class="text-4xl font-black text-sky-600 mb-12 text-center">
+        Technical Skills
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- CARD -->
+
+        <div class="glass rounded-3xl p-6 shadow-lg card-hover">
+
+            <h3 class="font-bold text-sky-600 text-xl mb-5">
+                System & Support
+            </h3>
+
+            <div class="flex flex-wrap gap-3">
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">ERP Support</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Remote Support</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Troubleshooting</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Windows Server</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">AnyDesk</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">TeamViewer</span>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="glass rounded-3xl p-6 shadow-lg card-hover">
+
+            <h3 class="font-bold text-sky-600 text-xl mb-5">
+                Networking
+            </h3>
+
+            <div class="flex flex-wrap gap-3">
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">TCP/IP</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">WiFi Setup</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Router Configuration</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Access Point</span>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">Network Troubleshooting</span>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="glass rounded-3xl p-6 shadow-lg card-hover">
+
+            <h3 class="font-bold text-sky-600 text-xl mb-5">
+                Database & POS
+            </h3>
+
+<div class="flex flex-wrap gap-3">
+
+    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
+        SQL
+    </span>
+
+    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
+        SQL Troubleshooting
+    </span>
+
+    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
+        POS System
+    </span>
+
+    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
+        NCR Aloha
+    </span>
+
+    <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full font-semibold">
+        Printer Configuration
+    </span>
+
+</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= SOFT SKILLS ================= -->
+
+<section id="softskills" class="fade-up">
+
+    <h2 class="text-4xl font-black text-sky-600 mb-12 text-center">
+        Soft Skills
+    </h2>
+
+    <div class="glass rounded-[2rem] p-10 shadow-xl">
+
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+
+            <div>
+
+                <i class="fa-solid fa-comments text-sky-500 text-5xl mb-5"></i>
+
+                <h3 class="font-bold text-xl mb-3">
+                    Communication
                 </h3>
 
-                <p className="text-slate-600 mb-4 leading-relaxed">
-                  {project.short}
+                <p class="text-slate-600">
+                    Clear communication with users and clients.
                 </p>
 
-                <div className="bg-sky-50 rounded-2xl p-5 border border-sky-100">
-                  <p className="text-slate-700 leading-relaxed text-sm">
-                    {project.description}
-                  </p>
-                </div>
-              </div>
             </div>
-          ))}
-        </div>
-      </section>
 
-      <section className="max-w-6xl mx-auto px-6 mb-28">
-        <h2 className="text-4xl font-black text-sky-600 mb-10 text-center">
-          Core Skills
-        </h2>
+            <div>
 
-        <div className="flex flex-wrap justify-center gap-4">
-          {[
-            'ERP Support',
-            'Remote Troubleshooting',
-            'SQL Database',
-            'POS System',
-            'Windows Support',
-            'Network Troubleshooting',
-            'AnyDesk',
-            'TeamViewer',
-            'RDC',
-            'WiFi Setup',
-            'Printer Troubleshooting',
-            'Technical Support',
-          ].map((skill, index) => (
-            <div
-              key={index}
-              className="bg-white/70 backdrop-blur-xl px-5 py-3 rounded-full shadow-md border border-white/50 font-semibold hover:bg-sky-500 hover:text-white transition duration-300"
-            >
-              {skill}
+                <i class="fa-solid fa-lightbulb text-sky-500 text-5xl mb-5"></i>
+
+                <h3 class="font-bold text-xl mb-3">
+                    Problem Solving
+                </h3>
+
+                <p class="text-slate-600">
+                    Strong troubleshooting and analytical thinking.
+                </p>
+
             </div>
-          ))}
+
+            <div>
+
+                <i class="fa-solid fa-clock text-sky-500 text-5xl mb-5"></i>
+
+                <h3 class="font-bold text-xl mb-3">
+                    Time Management
+                </h3>
+
+                <p class="text-slate-600">
+                    Fast response and efficient issue handling.
+                </p>
+
+            </div>
+
         </div>
-      </section>
 
-      <section
-        id="contact"
-        className="max-w-5xl mx-auto px-6 mb-20"
-      >
-        <div className="bg-gradient-to-r from-sky-500 to-blue-500 rounded-[3rem] p-14 text-center text-white shadow-2xl">
-          <h2 className="text-4xl font-black mb-5">
-            Ready to collaborate?
-          </h2>
-
-          <p className="text-lg opacity-90 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Siap membantu kebutuhan Remote IT Support, ERP Troubleshooting,
-            POS System, Networking, dan Technical Support untuk bisnis Anda.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-5">
-            <a
-              href="https://api.whatsapp.com/send/?phone=6285713021839&text&type=phone_number&app_absent=0"
-              target="_blank"
-              className="bg-white text-sky-600 hover:bg-sky-50 px-8 py-4 rounded-full font-bold shadow-lg hover:-translate-y-1 transition"
-            >
-              WhatsApp
-            </a>
-
-            <a
-              href="mailto:muhmukti9@gmail.com"
-              className="bg-sky-700 hover:bg-sky-800 px-8 py-4 rounded-full font-bold shadow-lg hover:-translate-y-1 transition"
-            >
-              Email Me
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <footer className="text-center pb-10 text-slate-500 text-sm">
-        © 2026 Muhammad Mukti Munasir Putra • Built with precision.
-      </footer>
     </div>
-  );
+
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+
+<section id="experience" class="fade-up">
+
+    <h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
+        Work Experience
+    </h2>
+
+    <div class="space-y-6">
+
+        <!-- SISCOM -->
+
+        <div class="glass rounded-3xl p-10 shadow-lg">
+
+            <div class="flex justify-between items-start mb-6">
+
+                <div>
+
+                    <h3 class="text-2xl font-bold text-slate-800">
+                        PT. Shan Informasi Sistem (SISCOM)
+                    </h3>
+
+                    <p class="text-sky-600 font-bold">
+                        IT Support Officer
+                    </p>
+
+                </div>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+
+                    2021 - Present
+
+                </span>
+
+            </div>
+
+            <ul id="exp-1"
+            class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
+
+                <li>Troubleshooting ERP systems and SQL databases.</li>
+                <li>Handled over 5,665 support cases.</li>
+                <li>Supported 388+ business clients.</li>
+
+            </ul>
+
+        </div>
+
+        <!-- QC -->
+
+        <div class="glass rounded-3xl p-10 shadow-lg">
+
+            <div class="flex justify-between items-start mb-6">
+
+                <div>
+
+                    <h3 class="text-2xl font-bold text-slate-800">
+                        PT. Shan Informasi Sistem (SISCOM)
+                    </h3>
+
+                    <p class="text-sky-600 font-bold">
+                        IT Quality Control
+                    </p>
+
+                </div>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+
+                    2020 - 2021
+
+                </span>
+
+            </div>
+
+            <ul id="exp-2"
+            class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
+
+                <li>Validated software fixes and application updates.</li>
+                <li>Performed system testing and quality assurance.</li>
+
+            </ul>
+
+        </div>
+
+        <!-- INTERTAMA -->
+
+        <div class="glass rounded-3xl p-10 shadow-lg">
+
+            <div class="flex justify-between items-start mb-6">
+
+                <div>
+
+                    <h3 class="text-2xl font-bold text-slate-800">
+                        INTERTAMA METADATA IT CONSULTING
+                    </h3>
+
+                    <p class="text-sky-600 font-bold">
+                        IT Support
+                    </p>
+
+                </div>
+
+                <span class="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold">
+
+                    2016 - 2020
+
+                </span>
+
+            </div>
+
+            <ul id="exp-3"
+            class="space-y-3 text-slate-600 list-disc pl-5 font-medium">
+
+                <li>Setup NCR Aloha POS systems.</li>
+                <li>Configured routers, WiFi, and networking.</li>
+                <li>Provided onsite and remote support.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PROJECTS ================= -->
+
+<section id="project" class="fade-up">
+
+    <h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
+        Featured Projects
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- PROJECT -->
+
+        <div class="glass rounded-[2.5rem] overflow-hidden shadow-lg card-hover">
+
+            <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80"
+            class="h-64 w-full object-cover">
+
+            <div class="p-8">
+
+                <h3 class="text-2xl font-bold mb-4">
+                    ERP Support System
+                </h3>
+
+                <p id="proj-1"
+                class="text-slate-600 leading-relaxed">
+
+                    ERP troubleshooting, SQL database optimization,
+                    and remote support for enterprise clients.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- PROJECT -->
+
+        <div class="glass rounded-[2.5rem] overflow-hidden shadow-lg card-hover">
+
+            <img
+            src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&q=80"
+            class="h-64 w-full object-cover">
+
+            <div class="p-8">
+
+                <h3 class="text-2xl font-bold mb-4">
+                    POS System & Network Setup
+                </h3>
+
+                <p id="proj-2"
+                class="text-slate-600 leading-relaxed">
+
+                    NCR Aloha POS setup, network infrastructure,
+                    and WiFi configuration for retail businesses.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="fade-up">
+
+    <h2 class="text-5xl font-black text-sky-600 mb-12 text-center">
+        Get In Touch
+    </h2>
+
+    <div class="glass rounded-[3rem] p-12 shadow-xl">
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <a href="mailto:muhmukti9@gmail.com"
+            class="bg-slate-900 text-white p-8 rounded-3xl hover:-translate-y-2 transition">
+
+                <i class="fa-solid fa-envelope text-4xl mb-5 text-sky-400"></i>
+
+                <h3 class="font-bold text-xl mb-2">
+                    Email
+                </h3>
+
+                <p class="opacity-70">
+                    muhmukti9@gmail.com
+                </p>
+
+            </a>
+
+            <a href="https://api.whatsapp.com/send/?phone=6285713021839&text&type=phone_number&app_absent=0"
+            target="_blank"
+            class="bg-slate-900 text-white p-8 rounded-3xl hover:-translate-y-2 transition">
+
+                <i class="fa-brands fa-whatsapp text-4xl mb-5 text-green-400"></i>
+
+                <h3 class="font-bold text-xl mb-2">
+                    WhatsApp
+                </h3>
+
+                <p class="opacity-70">
+                    +62 85713021839
+                </p>
+
+            </a>
+
+            <a href="https://www.linkedin.com/in/muhammad-mukti-munasir-putra/"
+            target="_blank"
+            class="bg-slate-900 text-white p-8 rounded-3xl hover:-translate-y-2 transition">
+
+                <i class="fa-brands fa-linkedin text-4xl mb-5 text-blue-400"></i>
+
+                <h3 class="font-bold text-xl mb-2">
+                    LinkedIn
+                </h3>
+
+                <p class="opacity-70">
+                    Connect with me
+                </p>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="text-center py-10 text-slate-400 font-medium border-t border-slate-200">
+
+    © 2026 Muhammad Mukti Munasir Putra
+
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+let isEnglish = true;
+
+/* ================= LANGUAGE ================= */
+
+function switchLanguage(){
+
+    isEnglish = !isEnglish;
+
+    const heroBadge = document.getElementById("hero-badge");
+    const heroDesc = document.getElementById("hero-desc");
+    const about = document.getElementById("about-content");
+
+    const exp1 = document.getElementById("exp-1");
+    const exp2 = document.getElementById("exp-2");
+    const exp3 = document.getElementById("exp-3");
+
+    const proj1 = document.getElementById("proj-1");
+    const proj2 = document.getElementById("proj-2");
+
+    if(!isEnglish){
+
+        heroBadge.innerHTML =
+        `<span class="w-2 h-2 bg-sky-500 rounded-full"></span>
+        Tersedia untuk Freelance & Kontrak`;
+
+        heroDesc.innerText =
+        "IT Support Specialist dengan pengalaman 7+ tahun dalam ERP System, SQL Database, Networking, dan Remote Troubleshooting.";
+
+        about.innerText =
+        "Saya adalah IT Support Specialist dengan pengalaman lebih dari 7 tahun dalam ERP Support, POS System, SQL Database, Networking, dan Remote Support. Berpengalaman menangani lebih dari 5.665 kasus support dan mendukung lebih dari 388 klien bisnis.";
+
+        exp1.innerHTML =
+        `
+        <li>Troubleshooting ERP dan database SQL.</li>
+        <li>Menangani lebih dari 5.665 kasus support.</li>
+        <li>Mendukung 388+ klien bisnis.</li>
+        `;
+
+        exp2.innerHTML =
+        `
+        <li>Melakukan validasi software dan update sistem.</li>
+        <li>Testing aplikasi dan quality assurance.</li>
+        `;
+
+        exp3.innerHTML =
+        `
+        <li>Setup NCR Aloha POS System.</li>
+        <li>Konfigurasi router, WiFi, dan jaringan.</li>
+        <li>Support onsite dan remote.</li>
+        `;
+
+        proj1.innerText =
+        "Troubleshooting ERP, optimasi SQL database, dan remote support untuk klien perusahaan.";
+
+        proj2.innerText =
+        "Setup NCR Aloha POS, infrastruktur jaringan, dan konfigurasi WiFi untuk bisnis retail.";
+
+    }
+
+    else{
+
+        location.reload();
+
+    }
+
 }
 
+/* ================= DOWNLOAD CV ================= */
+
+async function downloadCV(){
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    /* HEADER */
+
+    if(isEnglish){
+        doc.setFillColor(14,165,233);
+    }else{
+        doc.setFillColor(15,23,42);
+    }
+
+    doc.rect(0,0,210,40,"F");
+
+    doc.setTextColor(255,255,255);
+
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(22);
+
+    doc.text("MUHAMMAD MUKTI MUNASIR PUTRA",15,18);
+
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(11);
+
+    doc.text(
+    "IT Support Specialist | ERP | POS | Networking",
+    15,
+    28
+    );
+
+    /* CONTACT */
+
+    doc.setTextColor(30,41,59);
+    doc.setFontSize(10);
+
+    doc.text("Email : muhmukti9@gmail.com",15,52);
+    doc.text("Phone : +62 85713021839",15,58);
+    doc.text("Location : Tangerang, Indonesia",15,64);
+
+    /* SUMMARY */
+
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(14);
+
+    if(isEnglish){
+        doc.setTextColor(14,165,233);
+    }else{
+        doc.setTextColor(15,23,42);
+    }
+
+    doc.text(
+    isEnglish ? "Professional Summary" : "Profil Singkat",
+    15,
+    80
+    );
+
+    doc.setFont("helvetica","normal");
+    doc.setFontSize(10);
+    doc.setTextColor(71,85,105);
+
+    const summary = isEnglish
+    ?
+`IT Support Specialist with more than 7 years of experience in ERP Support, POS Systems, SQL Database, Networking, and Remote Troubleshooting. Experienced in handling over 5,665 support cases and supporting more than 388 business clients.`
+    :
+`IT Support Specialist dengan pengalaman lebih dari 7 tahun dalam ERP Support, POS System, SQL Database, Networking, dan Remote Troubleshooting. Berpengalaman menangani lebih dari 5.665 kasus support dan mendukung lebih dari 388 klien bisnis.`;
+
+    const splitSummary = doc.splitTextToSize(summary,180);
+
+    doc.text(splitSummary,15,88);
+
+    /* SAVE */
+
+    doc.save(
+    isEnglish
+    ?
+    "CV_Muhammad_Mukti_EN.pdf"
+    :
+    "CV_Muhammad_Mukti_ID.pdf"
+    );
+
+}
+
+/* ================= ANIMATION ================= */
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+},{threshold:.1});
+
+document.querySelectorAll(".fade-up").forEach(el=>{
+
+    observer.observe(el);
+
+});
+
+</script>
+
+</body>
+</html>
