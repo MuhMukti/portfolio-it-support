@@ -822,155 +822,154 @@ location.reload();
 
 }
 
-async function downloadCV(){
+async function downloadCV() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Pastikan mengambil status bahasa dari variabel global yang kita buat di script sebelumnya
+    // isEnglish didefinisikan di bagian script utama website
+    
+    if (isEnglish) {
+        /* =========================
+           ENGLISH CV
+        ========================= */
+        // Header Biru untuk English
+        doc.setFillColor(14, 165, 233);
+        doc.rect(0, 0, 210, 40, "F");
 
-const { jsPDF } = window.jspdf;
-const doc = new jsPDF();
+        doc.setTextColor(255, 255, 255);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(22);
+        doc.text("MUHAMMAD MUKTI MUNASIR PUTRA", 15, 18);
 
-doc.setFillColor(14,165,233);
-doc.rect(0,0,210,40,"F");
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "normal");
+        doc.text("IT Support Specialist | ERP & POS Support", 15, 28);
+        doc.text("Tangerang, Indonesia | 085713021839 | muhmukti9@gmail.com", 15, 35);
 
-doc.setTextColor(255,255,255);
-doc.setFontSize(22);
-doc.setFont("helvetica","bold");
+        doc.setTextColor(15, 23, 42);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(15);
+        doc.text("Professional Summary", 15, 55);
 
-doc.text("MUHAMMAD MUKTI MUNASIR PUTRA",15,18);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        const summaryEN = "IT Support Specialist with more than 7 years of experience in ERP systems, POS systems, SQL troubleshooting, networking, and remote support. Experienced in supporting SISCOM ERP, SISCOM POS, and NCR Aloha POS systems for business operations.";
+        doc.text(doc.splitTextToSize(summaryEN, 180), 15, 63);
 
-doc.setFontSize(11);
-doc.setFont("helvetica","normal");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(15);
+        doc.text("Technical Skills", 15, 92);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("• SISCOM ERP & SISCOM POS", 20, 102);
+        doc.text("• NCR Aloha POS", 20, 110);
+        doc.text("• SQL Troubleshooting", 20, 118);
+        doc.text("• Networking & WiFi Setup", 20, 126);
+        doc.text("• Remote Support", 20, 134);
+        doc.text("• Windows & Ubuntu Support", 20, 142);
 
-doc.text(
-"IT Support Specialist | ERP Support | POS Support",
-15,
-28
-);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(15);
+        doc.text("Work Experience", 15, 165);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.text("PT. Shan Informasi Sistem (SISCOM)", 15, 178);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("IT Support Officer | 2021 - Present", 15, 186);
+        doc.text("• ERP & POS troubleshooting", 20, 196);
+        doc.text("• SQL troubleshooting and maintenance", 20, 204);
+        doc.text("• Handled 5,665+ support cases", 20, 212);
 
-doc.text(
-"Tangerang, Indonesia | 085713021839 | muhmukti9@gmail.com",
-15,
-35
-);
+        doc.text("IT Quality Control | 2020 - 2021", 15, 228);
+        doc.text("• ERP system testing and validation", 20, 238);
+        doc.text("• Quality assurance before deployment", 20, 246);
 
-doc.setTextColor(15,23,42);
+        doc.addPage();
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.text("Intertama Metadata IT Consulting", 15, 25);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("IT Support | 2016 - 2020", 15, 35);
+        doc.text("• NCR Aloha POS setup & support", 20, 45);
+        doc.text("• Router, printer, and WiFi setup", 20, 53);
+        doc.text("• Remote and onsite troubleshooting", 20, 61);
 
-doc.setFont("helvetica","bold");
-doc.setFontSize(15);
+        doc.save("CV_Muhammad_Mukti_EN.pdf");
 
-doc.text("Professional Summary",15,55);
+    } else {
+        /* =========================
+           INDONESIA CV
+        ========================= */
+        // Header Abu-abu (Grey) untuk Indonesia
+        doc.setFillColor(226, 232, 240); 
+        doc.rect(0, 0, 210, 40, "F");
 
-doc.setFont("helvetica","normal");
-doc.setFontSize(10);
+        // Teks Header Hitam agar terbaca di background abu-abu
+        doc.setTextColor(15, 23, 42); 
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(22);
+        doc.text("MUHAMMAD MUKTI MUNASIR PUTRA", 15, 18);
 
-const summary =
-"IT Support Specialist with more than 7 years of experience supporting SISCOM ERP, SISCOM POS, NCR Aloha POS, SQL databases, networking, and remote troubleshooting.";
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "normal");
+        doc.text("IT Support Specialist | ERP & POS Support", 15, 28);
+        doc.text("Tangerang, Indonesia | 085713021839 | muhmukti9@gmail.com", 15, 35);
 
-doc.text(
-doc.splitTextToSize(summary,180),
-15,
-63
-);
+        doc.setTextColor(15, 23, 42);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(15);
+        doc.text("Profil Profesional", 15, 55);
 
-doc.setFont("helvetica","bold");
-doc.setFontSize(15);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        const summaryID = "IT Support Specialist dengan pengalaman lebih dari 7 tahun dalam ERP system, POS system, troubleshooting SQL, networking, dan remote support. Berpengalaman mendukung SISCOM ERP, SISCOM POS, dan NCR Aloha POS untuk operasional bisnis.";
+        doc.text(doc.splitTextToSize(summaryID, 180), 15, 63);
 
-doc.text("Technical Skills",15,92);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(15);
+        doc.text("Keahlian Teknis", 15, 92);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("• SISCOM ERP & SISCOM POS", 20, 102);
+        doc.text("• NCR Aloha POS", 20, 110);
+        doc.text("• SQL Troubleshooting", 20, 118);
+        doc.text("• Networking & Setup WiFi", 20, 126);
+        doc.text("• Remote Support", 20, 134);
+        doc.text("• Windows & Ubuntu Support", 20, 142);
 
-doc.setFont("helvetica","normal");
-doc.setFontSize(10);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(15);
+        doc.text("Pengalaman Kerja", 15, 165);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.text("PT. Shan Informasi Sistem (SISCOM)", 15, 178);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("IT Support Officer | 2021 - Sekarang", 15, 186);
+        doc.text("• Troubleshooting ERP & POS", 20, 196);
+        doc.text("• Troubleshooting dan maintenance SQL", 20, 204);
+        doc.text("• Menangani 5.665+ kasus support", 20, 212);
 
-doc.text("• SISCOM ERP",20,102);
-doc.text("• SISCOM POS",20,110);
-doc.text("• NCR Aloha POS",20,118);
-doc.text("• SQL Troubleshooting",20,126);
-doc.text("• Networking",20,134);
-doc.text("• Remote Support",20,142);
+        doc.text("IT Quality Control | 2020 - 2021", 15, 228);
+        doc.text("• Testing dan validasi sistem ERP", 20, 238);
+        doc.text("• Quality assurance sebelum deployment", 20, 246);
 
-doc.setFont("helvetica","bold");
-doc.setFontSize(15);
+        doc.addPage();
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.text("Intertama Metadata IT Consulting", 15, 25);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("IT Support | 2016 - 2020", 15, 35);
+        doc.text("• Setup dan support NCR Aloha POS", 20, 45);
+        doc.text("• Setup router, printer, dan WiFi", 20, 53);
+        doc.text("• Troubleshooting remote dan onsite", 20, 61);
 
-doc.text("Work Experience",15,165);
-
-doc.setFont("helvetica","bold");
-doc.setFontSize(11);
-
-doc.text("PT. Shan Informasi Sistem (SISCOM)",15,178);
-
-doc.setFont("helvetica","normal");
-doc.setFontSize(10);
-
-doc.text("IT Support Officer | 2021 - Present",15,186);
-
-doc.text("• Troubleshooting SISCOM ERP & SISCOM POS",20,196);
-doc.text("• SQL troubleshooting & database maintenance",20,204);
-doc.text("• Handled over 5,665 support cases",20,212);
-
-doc.text("PT. Shan Informasi Sistem (SISCOM)",15,228);
-doc.text("IT Quality Control | 2020 - 2021",15,236);
-
-doc.text("• ERP testing and validation",20,246);
-doc.text("• Software quality assurance",20,254);
-
-doc.addPage();
-
-doc.setFont("helvetica","bold");
-doc.setFontSize(11);
-
-doc.text("Intertama Metadata IT Consulting",15,25);
-
-doc.setFont("helvetica","normal");
-doc.setFontSize(10);
-
-doc.text("IT Support | 2016 - 2020",15,33);
-
-doc.text("• Setup NCR Aloha POS systems",20,43);
-doc.text("• Network and WiFi configuration",20,51);
-doc.text("• Remote and onsite troubleshooting",20,59);
-
-doc.setFont("helvetica","bold");
-doc.setFontSize(15);
-
-doc.text("Featured Projects",15,90);
-
-doc.setFont("helvetica","bold");
-doc.setFontSize(11);
-
-doc.text("ERP Support System",15,104);
-
-doc.setFont("helvetica","normal");
-doc.setFontSize(10);
-
-doc.text(
-doc.splitTextToSize(
-"Troubleshooting SISCOM ERP & SISCOM POS systems including SQL troubleshooting and remote support.",
-170
-),
-15,
-112
-);
-
-doc.setFont("helvetica","bold");
-doc.setFontSize(11);
-
-doc.text("POS System & Network Setup",15,140);
-
-doc.setFont("helvetica","normal");
-doc.setFontSize(10);
-
-doc.text(
-doc.splitTextToSize(
-"Configured NCR Aloha POS systems, networking infrastructure, routers, and WiFi setup.",
-170
-),
-15,
-148
-);
-
-doc.save(
-isEnglish
-? "CV_Muhammad_Mukti_EN.pdf"
-: "CV_Muhammad_Mukti_ID.pdf"
-);
-
+        doc.save("CV_Muhammad_Mukti_ID.pdf");
+    }
 }
 
 const observer = new IntersectionObserver(entries=>{
