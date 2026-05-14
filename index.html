@@ -16,10 +16,16 @@ href="https://ui-avatars.com/api/?name=MM&background=0ea5e9&color=fff&bold=true"
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+/* TAMBAHKAN / GANTI STYLE INI */
+
 <style>
 
 html{
 scroll-behavior:smooth;
+}
+
+*{
+box-sizing:border-box;
 }
 
 body{
@@ -29,12 +35,23 @@ overflow-x:hidden;
 font-family:Arial,Helvetica,sans-serif;
 }
 
+/* RESPONSIVE CONTAINER */
+.container-responsive{
+width:100%;
+max-width:1280px;
+margin:auto;
+padding-left:20px;
+padding-right:20px;
+}
+
+/* GLASS EFFECT */
 .glass{
 background:rgba(255,255,255,0.65);
 backdrop-filter:blur(14px);
 border:1px solid rgba(255,255,255,0.4);
 }
 
+/* ANIMATION */
 .fade-up{
 opacity:0;
 transform:translateY(40px);
@@ -46,6 +63,7 @@ opacity:1;
 transform:translateY(0);
 }
 
+/* HERO BACKGROUND */
 .hero-bg{
 position:absolute;
 inset:0;
@@ -64,8 +82,12 @@ animation:float 10s infinite;
 }
 
 @keyframes float{
-0%,100%{transform:translate(0,0);}
-50%{transform:translate(30px,-20px);}
+0%,100%{
+transform:translate(0,0);
+}
+50%{
+transform:translate(30px,-20px);
+}
 }
 
 @keyframes pulse-soft{
@@ -83,6 +105,7 @@ transform:scale(1.02);
 animation:pulse-soft 2s infinite ease-in-out;
 }
 
+/* CONTACT */
 .contact-card{
 background-color:#0f172a;
 color:white;
@@ -93,6 +116,7 @@ border:1px solid #1e293b;
 background-color:#1e293b;
 border:1px solid #334155;
 color:white;
+width:100%;
 }
 
 .input-field::placeholder{
@@ -110,6 +134,7 @@ border-color:#10b981;
 background:rgba(16,185,129,0.05);
 }
 
+/* SKILL */
 .skill-badge{
 background:#e0f2fe;
 color:#0369a1;
@@ -118,6 +143,164 @@ border-radius:999px;
 font-size:14px;
 font-weight:700;
 display:inline-block;
+}
+
+/* RESPONSIVE MOBILE */
+@media(max-width:768px){
+
+/* NAVBAR */
+nav .max-w-7xl{
+flex-direction:column;
+gap:16px;
+padding-top:14px;
+padding-bottom:14px;
+}
+
+nav h1{
+font-size:24px;
+}
+
+nav .flex.items-center{
+flex-wrap:wrap;
+justify-content:center;
+gap:12px;
+font-size:11px;
+}
+
+/* HERO */
+section.relative.min-h-screen{
+padding-top:160px;
+padding-bottom:80px;
+min-height:auto;
+}
+
+section h1{
+font-size:42px !important;
+line-height:1.1;
+}
+
+#hero-desc{
+font-size:16px !important;
+line-height:1.7;
+padding:0 8px;
+}
+
+#hero-badge{
+font-size:11px;
+padding:10px 16px;
+}
+
+/* BUTTON */
+button,
+a{
+font-size:14px;
+}
+
+.flex.flex-wrap.justify-center.gap-4.mt-12{
+flex-direction:column;
+align-items:center;
+}
+
+.flex.flex-wrap.justify-center.gap-4.mt-12 button,
+.flex.flex-wrap.justify-center.gap-4.mt-12 a{
+width:100%;
+max-width:320px;
+}
+
+/* SECTION TITLE */
+h2{
+font-size:34px !important;
+line-height:1.2;
+}
+
+/* ABOUT */
+.rounded-\[3rem\]{
+padding:28px !important;
+border-radius:2rem !important;
+}
+
+#about-content{
+font-size:16px !important;
+line-height:1.8;
+}
+
+/* EXPERIENCE */
+.glass.rounded-3xl{
+padding:28px !important;
+}
+
+.flex.justify-between.items-start{
+flex-direction:column;
+gap:14px;
+}
+
+.flex.justify-between.items-start span{
+align-self:flex-start;
+}
+
+/* PROJECT */
+.grid.md\:grid-cols-2{
+grid-template-columns:1fr !important;
+}
+
+.h-64{
+height:220px !important;
+}
+
+/* SOFT SKILLS */
+.grid.md\:grid-cols-4{
+grid-template-columns:1fr !important;
+}
+
+/* CONTACT */
+.contact-card{
+padding:28px !important;
+}
+
+.grid.md\:grid-cols-3{
+grid-template-columns:1fr !important;
+}
+
+/* FOOTER */
+footer{
+padding-left:20px;
+padding-right:20px;
+font-size:13px;
+}
+
+/* BLOB MOBILE */
+.blob{
+width:260px;
+height:260px;
+}
+
+}
+
+/* EXTRA SMALL DEVICE */
+@media(max-width:480px){
+
+section h1{
+font-size:34px !important;
+}
+
+h2{
+font-size:28px !important;
+}
+
+#hero-desc{
+font-size:15px !important;
+}
+
+.skill-badge{
+font-size:12px;
+padding:8px 14px;
+}
+
+.glass.rounded-3xl,
+.rounded-\[3rem\]{
+padding:22px !important;
+}
+
 }
 
 </style>
@@ -132,7 +315,9 @@ display:inline-block;
 <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
 <h1 class="font-black text-2xl text-sky-600 tracking-tighter">
-MUKTI.
+	<a href="#" class="font-black text-2xl text-sky-600 tracking-tighter hover:opacity-80 transition-opacity cursor-pointer">
+MUKTI
+	</a>
 </h1>
 
 <div class="flex items-center gap-4 md:gap-8 font-bold text-slate-700 text-sm uppercase tracking-widest">
